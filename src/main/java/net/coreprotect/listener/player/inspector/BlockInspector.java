@@ -3,7 +3,6 @@ package net.coreprotect.listener.player.inspector;
 import java.sql.Connection;
 import java.sql.Statement;
 
-import net.coreprotect.utility.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.block.BlockState;
