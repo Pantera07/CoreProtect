@@ -19,6 +19,16 @@ public class ContainerInspector extends BaseInspector {
                 try {
                     checkPreconditions(player);
 
+                    // Zerus start
+                    Location playerLocation = player.getLocation();
+                    if (!playerLocation.getWorld().equals(finalLocation.getWorld())) {
+                        return;
+                    }
+                    if (playerLocation.distance(finalLocation) > 6) {
+                        return;
+                    }
+                    // Zerus end
+
                     try (Connection connection = getDatabaseConnection(player)) {
                         Statement statement = connection.createStatement();
                         List<String> blockData = ChestTransactionLookup.performLookup(null, statement, finalLocation, player, 1, 7, false);
