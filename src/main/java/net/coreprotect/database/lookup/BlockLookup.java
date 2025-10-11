@@ -24,6 +24,23 @@ public class BlockLookup {
                 return resultText;
             }
 
+            // Zerus start
+            if (commandSender instanceof Player) {
+                Player player = (Player) commandSender;
+
+                Location playerLocation = player.getLocation();
+                Location blockLocation = block.getLocation();
+
+                if (!playerLocation.getWorld().equals(blockLocation.getWorld())) {
+                    if (!player.hasPermission("coreprotect.lookup.near")) return "";
+                }
+
+                if (playerLocation.distance(blockLocation) > 6) {
+                    if (!player.hasPermission("coreprotect.lookup.near")) return "";
+                }
+            }
+            // Zerus end
+
             if (command == null) {
                 if (commandSender.hasPermission("coreprotect.co")) {
                     command = "co";
