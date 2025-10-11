@@ -32,6 +32,22 @@ public class ChestTransactionLookup {
                 return result;
             }
 
+            // Zerus start
+            if (commandSender instanceof Player) {
+                Player player = (Player) commandSender;
+
+                Location playerLocation = player.getLocation();
+
+                if (!playerLocation.getWorld().equals(l.getWorld())) {
+                    if (!player.hasPermission("coreprotect.lookup.near")) return result;
+                }
+
+                if (playerLocation.distance(l) > 6) {
+                    if (!player.hasPermission("coreprotect.lookup.near")) return result;
+                }
+            }
+            // Zerus end
+
             if (command == null) {
                 if (commandSender.hasPermission("coreprotect.co")) {
                     command = "co";
