@@ -18,6 +18,17 @@ public class InteractionInspector extends BaseInspector {
                 try {
                     checkPreconditions(player);
 
+                    // Zerus start
+                    Location playerLocation = player.getLocation();
+                    Location blockLocation = finalInteractBlock.getLocation();
+                    if (!playerLocation.getWorld().equals(blockLocation.getWorld())) {
+                        return;
+                    }
+                    if (playerLocation.distance(blockLocation) > 6) {
+                        return;
+                    }
+                    // Zerus end
+
                     try (Connection connection = getDatabaseConnection(player)) {
                         Statement statement = connection.createStatement();
                         String blockData = InteractionLookup.performLookup(null, statement, finalInteractBlock, player, 0, 1, 7);
