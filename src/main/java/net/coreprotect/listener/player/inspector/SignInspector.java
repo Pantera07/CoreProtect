@@ -19,6 +19,16 @@ public class SignInspector extends BaseInspector {
                 try {
                     checkPreconditions(player);
 
+                    // Zerus start
+                    Location playerLocation = player.getLocation();
+                    if (!playerLocation.getWorld().equals(location.getWorld())) {
+                        return;
+                    }
+                    if (playerLocation.distance(location) > 6) {
+                        return;
+                    }
+                    // Zerus end
+
                     try (Connection connection = getDatabaseConnection(player)) {
                         Statement statement = connection.createStatement();
                         List<String> signData = SignMessageLookup.performLookup(null, statement, location, player, 1, 7);
