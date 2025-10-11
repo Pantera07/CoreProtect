@@ -20,6 +20,17 @@ public class BlockInspector extends BaseInspector {
                 try {
                     checkPreconditions(player);
 
+                    // Zerus start
+                    Location playerLocation = player.getLocation();
+                    Location blockLocation = blockState.getLocation();
+                    if (!playerLocation.getWorld().equals(blockLocation.getWorld())) {
+                        return;
+                    }
+                    if (playerLocation.distance(blockLocation) > 6) {
+                        return;
+                    }
+                    // Zerus end
+
                     try (Connection connection = getDatabaseConnection(player)) {
                         Statement statement = connection.createStatement();
 
@@ -65,6 +76,17 @@ public class BlockInspector extends BaseInspector {
             public void run() {
                 try {
                     checkPreconditions(player);
+
+                    // Zerus start
+                    Location playerLocation = player.getLocation();
+                    Location blockLocation = finalBlock.getLocation();
+                    if (!playerLocation.getWorld().equals(blockLocation.getWorld())) {
+                        return;
+                    }
+                    if (playerLocation.distance(blockLocation) > 6) {
+                        return;
+                    }
+                    // Zerus end
 
                     try (Connection connection = getDatabaseConnection(player)) {
                         Statement statement = connection.createStatement();
