@@ -42,7 +42,7 @@ public class SignMessageLookup {
                     if (!player.hasPermission("coreprotect.lookup.near")) return result;
                 }
 
-                if (playerLocation.distance(l) > 6) {
+                if (playerLocation.distance(l) > 7) {
                     if (!player.hasPermission("coreprotect.lookup.near")) return result;
                 }
             }
