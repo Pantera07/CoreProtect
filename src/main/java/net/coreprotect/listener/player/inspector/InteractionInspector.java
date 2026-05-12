@@ -3,6 +3,7 @@ package net.coreprotect.listener.player.inspector;
 import java.sql.Connection;
 import java.sql.Statement;
 
+import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
@@ -17,6 +18,17 @@ public class InteractionInspector extends BaseInspector {
             public void run() {
                 try {
                     checkPreconditions(player);
+
+                    // Zerus start
+                    Location playerLocation = player.getLocation();
+                    Location blockLocation = finalInteractBlock.getLocation();
+                    if (!playerLocation.getWorld().equals(blockLocation.getWorld())) {
+                        return;
+                    }
+                    if (playerLocation.distance(blockLocation) > 7) {
+                        return;
+                    }
+                    // Zerus end
 
                     try (Connection connection = getDatabaseConnection(player)) {
                         Statement statement = connection.createStatement();
