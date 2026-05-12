@@ -37,7 +37,7 @@ public class BlockLookup {
                     if (!player.hasPermission("coreprotect.lookup.near")) return "";
                 }
 
-                if (playerLocation.distance(blockLocation) > 6) {
+                if (playerLocation.distance(blockLocation) > 7) {
                     if (!player.hasPermission("coreprotect.lookup.near")) return "";
                 }
             }
