@@ -181,23 +181,19 @@ public final class ListenerHandler {
         pluginManager.registerEvents(new StructureGrowListener(), plugin);
 
         // Plugin channel events
-        //pluginManager.registerEvents(new PluginChannelListener(), plugin); // Zerus
+        pluginManager.registerEvents(new PluginChannelListener(), plugin);
     }
 
     public static void registerNetworking() {
-        /* Zerus
         CoreProtect.getInstance().getServer().getMessenger().registerIncomingPluginChannel(CoreProtect.getInstance(), PluginChannelHandshakeListener.pluginChannel, new PluginChannelHandshakeListener());
         CoreProtect.getInstance().getServer().getMessenger().registerOutgoingPluginChannel(CoreProtect.getInstance(), PluginChannelHandshakeListener.pluginChannel);
         CoreProtect.getInstance().getServer().getMessenger().registerOutgoingPluginChannel(CoreProtect.getInstance(), PluginChannelListener.pluginChannel);
-        */
     }
 
     public static void unregisterNetworking() {
-        /* Zerus
         CoreProtect.getInstance().getServer().getMessenger().unregisterIncomingPluginChannel(CoreProtect.getInstance(), PluginChannelHandshakeListener.pluginChannel);
         CoreProtect.getInstance().getServer().getMessenger().unregisterOutgoingPluginChannel(CoreProtect.getInstance(), PluginChannelHandshakeListener.pluginChannel);
         CoreProtect.getInstance().getServer().getMessenger().unregisterOutgoingPluginChannel(CoreProtect.getInstance(), PluginChannelListener.pluginChannel);
-        */
     }
 
 }
