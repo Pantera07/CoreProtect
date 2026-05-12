@@ -161,7 +161,13 @@ public class ChatUtils {
 
         if (component) {
             Date logDate = new Date(resultTime * 1000L);
-            String formattedTimestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z").format(logDate);
+            // Zerus start
+            //String formattedTimestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z").format(logDate);
+            SimpleDateFormat kstFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
+            kstFormat.setTimeZone(java.util.TimeZone.getTimeZone("Asia/Seoul"));
+
+            String formattedTimestamp = kstFormat.format(logDate);
+            // Zerus end
 
             return Chat.COMPONENT_TAG_OPEN + Chat.COMPONENT_POPUP + "|" + Color.GREY + formattedTimestamp + "|" + Color.GREY + message.toString() + Chat.COMPONENT_TAG_CLOSE;
         }
