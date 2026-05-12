@@ -21,6 +21,7 @@ import net.coreprotect.utility.ItemUtils;
 import net.coreprotect.utility.MaterialUtils;
 import net.coreprotect.utility.StringUtils;
 import net.coreprotect.utility.WorldUtils;
+import org.bukkit.entity.Player;
 
 public class ChestTransactionLookup {
 
@@ -31,6 +32,22 @@ public class ChestTransactionLookup {
             if (l == null) {
                 return result;
             }
+
+            // Zerus start
+            if (commandSender instanceof Player) {
+                Player player = (Player) commandSender;
+
+                Location playerLocation = player.getLocation();
+
+                if (!playerLocation.getWorld().equals(l.getWorld())) {
+                    if (!player.hasPermission("coreprotect.lookup.near")) return result;
+                }
+
+                if (playerLocation.distance(l) > 7) {
+                    if (!player.hasPermission("coreprotect.lookup.near")) return result;
+                }
+            }
+            // Zerus end
 
             if (command == null) {
                 if (commandSender.hasPermission("coreprotect.co")) {
