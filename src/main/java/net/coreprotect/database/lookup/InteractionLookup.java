@@ -4,8 +4,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Locale;
 
+import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import net.coreprotect.config.ConfigHandler;
 import net.coreprotect.database.statement.UserStatement;
@@ -27,6 +29,23 @@ public class InteractionLookup {
             if (block == null) {
                 return result;
             }
+
+            // Zerus start
+            if (commandSender instanceof Player) {
+                Player player = (Player) commandSender;
+
+                Location playerLocation = player.getLocation();
+                Location blockLocation = block.getLocation();
+
+                if (!playerLocation.getWorld().equals(blockLocation.getWorld())) {
+                    if (!player.hasPermission("coreprotect.lookup.near")) return "";
+                }
+
+                if (playerLocation.distance(blockLocation) > 7) {
+                    if (!player.hasPermission("coreprotect.lookup.near")) return "";
+                }
+            }
+            // Zerus end
 
             if (command == null) {
                 if (commandSender.hasPermission("coreprotect.co")) {
