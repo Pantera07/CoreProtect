@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.Statement;
 
 import org.bukkit.GameMode;
+import org.bukkit.Location; // Zerus
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
-import org.bukkit.Location; // Zerus
 
 import net.coreprotect.database.lookup.BlockLookup;
 import net.coreprotect.utility.Chat;
