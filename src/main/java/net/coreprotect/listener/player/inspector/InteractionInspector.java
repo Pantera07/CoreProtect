@@ -3,9 +3,9 @@ package net.coreprotect.listener.player.inspector;
 import java.sql.Connection;
 import java.sql.Statement;
 
+import org.bukkit.Location; // Zerus
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.Location; // Zerus
 
 import net.coreprotect.database.lookup.InteractionLookup;
 import net.coreprotect.utility.Chat;
