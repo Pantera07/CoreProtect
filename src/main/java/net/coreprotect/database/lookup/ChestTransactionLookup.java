@@ -9,6 +9,7 @@ import java.util.Locale;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player; // Zerus
 
 import net.coreprotect.config.ConfigHandler;
 import net.coreprotect.database.statement.UserStatement;
@@ -22,7 +23,6 @@ import net.coreprotect.utility.MaterialUtils;
 import net.coreprotect.utility.StringUtils;
 import net.coreprotect.utility.WorldUtils;
 import net.coreprotect.utility.ErrorReporter;
-import org.bukkit.entity.Player;
 
 public class ChestTransactionLookup {
 
