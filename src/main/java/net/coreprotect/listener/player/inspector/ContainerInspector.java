@@ -24,6 +24,16 @@ public class ContainerInspector extends BaseInspector {
             @Override
             public void run() {
                 try {
+                    // Zerus start
+                    Location playerLocation = player.getLocation();
+                    if (!playerLocation.getWorld().equals(finalLocation.getWorld())) {
+                        return;
+                    }
+                    if (playerLocation.distance(finalLocation) > 8) {
+                        return;
+                    }
+                    // Zerus end
+
                     ConfigHandler.lookupEntityContainer.remove(player.getName());
 
                     try (Connection connection = getDatabaseConnection(player)) {
@@ -53,6 +63,17 @@ public class ContainerInspector extends BaseInspector {
             @Override
             public void run() {
                 try {
+                    // Zerus start
+                    Location playerLocation = player.getLocation();
+                    if (!playerLocation.getWorld().equals(location.getWorld())) {
+                        return;
+                    }
+                    if (playerLocation.distance(location) > 8) {
+                        return;
+                    }
+                    // Zerus end
+
+                    
                     ConfigHandler.lookupEntityContainer.remove(player.getName());
                     ConfigHandler.lookupType.remove(player.getName());
 

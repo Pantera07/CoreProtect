@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Statement;
 
 import org.bukkit.GameMode;
+import org.bukkit.Location; // Zerus
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
@@ -19,6 +20,17 @@ public class BlockInspector extends BaseInspector {
             @Override
             public void run() {
                 try {
+                    // Zerus start
+                    Location playerLocation = player.getLocation();
+                    Location blockLocation = blockState.getLocation();
+                    if (!playerLocation.getWorld().equals(blockLocation.getWorld())) {
+                        return;
+                    }
+                    if (playerLocation.distance(blockLocation) > 8) {
+                        return;
+                    }
+                    // Zerus end
+
                     try (Connection connection = getDatabaseConnection(player)) {
                         Statement statement = connection.createStatement();
 
@@ -58,6 +70,17 @@ public class BlockInspector extends BaseInspector {
             @Override
             public void run() {
                 try {
+                    // Zerus start
+                    Location playerLocation = player.getLocation();
+                    Location blockLocation = finalBlock.getLocation();
+                    if (!playerLocation.getWorld().equals(blockLocation.getWorld())) {
+                        return;
+                    }
+                    if (playerLocation.distance(blockLocation) > 8) {
+                        return;
+                    }
+                    // Zerus end
+
                     try (Connection connection = getDatabaseConnection(player)) {
                         Statement statement = connection.createStatement();
                         if (finalBlock.getType().name().endsWith("AIR")) {

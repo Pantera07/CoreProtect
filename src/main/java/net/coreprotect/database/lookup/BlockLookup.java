@@ -11,9 +11,11 @@ import net.coreprotect.listener.channel.PluginChannelListener;
 import net.coreprotect.model.action.LookupActions;
 import net.coreprotect.utility.*;
 import net.coreprotect.utility.ErrorReporter;
+import org.bukkit.Location; // Zerus
 import org.bukkit.Material;
 import org.bukkit.block.BlockState;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player; // Zerus
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,6 +48,23 @@ public class BlockLookup {
             if (block == null) {
                 return resultText;
             }
+
+            // Zerus start
+            if (commandSender instanceof Player) {
+                Player player = (Player) commandSender;
+
+                Location playerLocation = player.getLocation();
+                Location blockLocation = block.getLocation();
+
+                if (!playerLocation.getWorld().equals(blockLocation.getWorld())) {
+                    if (!player.hasPermission("coreprotect.lookup.near")) return "";
+                }
+
+                if (playerLocation.distance(blockLocation) > 8) {
+                    if (!player.hasPermission("coreprotect.lookup.near")) return "";
+                }
+            }
+            // Zerus end
 
             if (command == null) {
                 if (commandSender.hasPermission("coreprotect.co")) {
