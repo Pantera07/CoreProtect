@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player; // Zerus
 
 import net.coreprotect.config.ConfigHandler;
 import net.coreprotect.database.DuckDBLookupQuery;
@@ -34,6 +35,22 @@ public class SignMessageLookup {
             if (l == null) {
                 return result;
             }
+
+            // Zerus start
+            if (commandSender instanceof Player) {
+                Player player = (Player) commandSender;
+
+                Location playerLocation = player.getLocation();
+
+                if (!playerLocation.getWorld().equals(l.getWorld())) {
+                    if (!player.hasPermission("coreprotect.lookup.near")) return result;
+                }
+
+                if (playerLocation.distance(l) > 8) {
+                    if (!player.hasPermission("coreprotect.lookup.near")) return result;
+                }
+            }
+            // Zerus end
 
             if (command == null) {
                 if (commandSender.hasPermission("coreprotect.co")) {
