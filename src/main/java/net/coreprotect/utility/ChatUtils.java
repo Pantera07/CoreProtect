@@ -16,7 +16,7 @@ public class ChatUtils {
     private static final DecimalFormatSymbols ROOT_DECIMAL_SYMBOLS = DecimalFormatSymbols.getInstance(Locale.ROOT);
     private static final ThreadLocal<DecimalFormat> TIME_DECIMAL_FORMAT = ThreadLocal.withInitial(() -> new DecimalFormat("0.00", ROOT_DECIMAL_SYMBOLS));
     private static final ThreadLocal<DecimalFormat> COORDINATE_DECIMAL_FORMAT = ThreadLocal.withInitial(() -> new DecimalFormat("#.##", ROOT_DECIMAL_SYMBOLS));
-    private static final DateTimeFormatter TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z", Locale.ROOT);
+    private static final DateTimeFormatter TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z", Locale.KOREA); // Zerus
 
     private ChatUtils() {
         throw new IllegalStateException("Utility class");
@@ -174,7 +174,7 @@ public class ChatUtils {
         }
 
         if (component) {
-            String formattedTimestamp = TIMESTAMP_FORMATTER.format(Instant.ofEpochSecond(resultTime).atZone(ZoneId.systemDefault()));
+            String formattedTimestamp = TIMESTAMP_FORMATTER.format(Instant.ofEpochSecond(resultTime).atZone(ZoneId.of("Asia/Seoul"))); // Zerus
 
             return Chat.COMPONENT_TAG_OPEN + Chat.COMPONENT_POPUP + "|" + Chat.escapeComponent(Color.GREY + formattedTimestamp) + "|" + Chat.escapeComponentTags(Color.GREY + message.toString()) + Chat.COMPONENT_TAG_CLOSE;
         }
