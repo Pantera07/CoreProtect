@@ -174,7 +174,7 @@ public class ChatUtils {
         }
 
         if (component) {
-            String formattedTimestamp = TIMESTAMP_FORMATTER.format(Instant.ofEpochSecond(resultTime).atZone(ZoneId.systemDefault()));
+            String formattedTimestamp = TIMESTAMP_FORMATTER.format(Instant.ofEpochSecond(resultTime).atZone(ZoneId.of("Asia/Seoul"))); // Zerus
 
             return Chat.COMPONENT_TAG_OPEN + Chat.COMPONENT_POPUP + "|" + Chat.escapeComponent(Color.GREY + formattedTimestamp) + "|" + Chat.escapeComponentTags(Color.GREY + message.toString()) + Chat.COMPONENT_TAG_CLOSE;
         }
